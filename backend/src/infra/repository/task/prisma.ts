@@ -30,6 +30,13 @@ export class PrismaTaskRepo implements TaskRepo {
     });
   }
 
+  async update(taskId: string, task: Omit<Task, "id" | "userId" | "createdAt">): Promise<void> {
+    await this.prismaClient.task.update({
+      where: { id: taskId },
+      data: task
+    });
+  }
+
   async delete(taskId: string): Promise<void> {
     await this.prismaClient.task.delete({
       where: { id: taskId }
