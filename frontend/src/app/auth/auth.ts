@@ -27,4 +27,17 @@ export class Auth {
       map((response) => this.token.set(response.token)
     ));
   }
+
+  register(email: string, password: string) {
+    const body = {
+      email: email,
+      password: password
+    }
+
+    const options = {
+      context: new HttpContext().set(BYPASS_AUTH, true),
+    }
+    
+    return this.http.post(`${this.baseUrl}/register`, body, options);
+  }
 }
