@@ -3,3 +3,4 @@ node_modules/
 test/bundle.d.ts
 *.js
 package-lock.json
+.env
