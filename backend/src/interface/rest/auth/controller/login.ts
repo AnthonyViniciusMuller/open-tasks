@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Login } from "../../../application/usecases/user/login/login";
+import { Login } from "../../../../application/usecases/user/login/login";
 
 export class LoginController {
   constructor(private readonly loginUsecase: Login) {}

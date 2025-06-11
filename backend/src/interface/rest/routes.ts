@@ -1,25 +1,17 @@
-import { Router } from "express";
-import { JwtService } from "../../infra/service/auth/jwt";
-import { PrismaUserRepo } from "../../infra/repository/user/prisma";
-import { PrismaClient } from "@prisma/client";
-import { Login } from "../../application/usecases/user/login/login";
-import { Register } from "../../application/usecases/user/register/register";
-import { RegisterController } from "./auth/register";
-import { LoginController } from "./auth/login";
+import express from "express";
+import cookieParser from "cookie-parser";
+import auth from './auth/routes';
 
-const primaClient = new PrismaClient();
-const userRepo = new PrismaUserRepo(primaClient);
-const authService = new JwtService();
+const app = express();
+app.use(express.json());
+app.use(cookieParser());
 
-const loginUsecase = new Login(userRepo, authService);
-const loginController = new LoginController(loginUsecase);
+app.use("/auth", auth);
 
-const registerUsecase = new Register(userRepo);
-const registerController = new RegisterController(registerUsecase);
+const PORT = process.env.PORT || 3000;
 
-const router = Router();
+const bootstrapServerREST = () => {
+    app.listen(PORT, () => console.log(`Rest server running on port ${PORT}`));
+}
 
-router.post("/register", (req, res) => registerController.handle(req, res));
-router.post("/login", (req, res) =>  loginController.handle(req, res));
-
-export default router;
+export default bootstrapServerREST;

@@ -1,15 +1,6 @@
 import dotenv from 'dotenv';
+import bootstrapServerREST from './interface/rest/routes';
+
 dotenv.config();
 
-import express from "express";
-import cookieParser from "cookie-parser";
-import auth from './interface/rest/routes';
-
-const app = express();
-app.use(express.json());
-app.use(cookieParser());
-
-app.use("/auth", auth);
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+bootstrapServerREST();

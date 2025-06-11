@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Register } from "../../../application/usecases/user/register/register";
+import { Register } from "../../../../application/usecases/user/register/register";
 
 export class RegisterController {
   constructor(private readonly registerUsecase: Register) {}
