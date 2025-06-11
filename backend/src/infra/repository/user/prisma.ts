@@ -14,4 +14,16 @@ export class PrismaUserRepo implements UserRepo {
       },
     });
   }
+
+  async getByEmail(email: string): Promise<User | null> {
+    const user = await this.prismaClient.user.findUnique({
+      where: { email },
+    });
+
+    if (!user) {
+      return null;
+    };
+
+    return new User(user);
+  }
 }
