@@ -12,10 +12,27 @@ export class PrismaTaskRepo implements TaskRepo {
     });
   }
 
+  async getById(taskId: string): Promise<Task | null> {
+    const task = await this.prismaClient.task.findUnique({
+      where: { id: taskId }
+    });
+
+    if (!task) {
+      return null;
+    }
+
+    return new Task(task);
+  }
 
   async create(task: Task): Promise<void> {
     await this.prismaClient.task.create({
       data: task
+    });
+  }
+
+  async delete(taskId: string): Promise<void> {
+    await this.prismaClient.task.delete({
+      where: { id: taskId }
     });
   }
 }
