@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { BYPASS_AUTH } from '../interceptors/context';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,11 @@ export class Auth {
       password: password
     }
 
-    return this.http.post<{ token: string}>(`${this.baseUrl}/login`, body).pipe(
+    const options = {
+      context: new HttpContext().set(BYPASS_AUTH, true),
+    }
+
+    return this.http.post<{ token: string}>(`${this.baseUrl}/login`, body, options).pipe(
       map((response) => this.token.set(response.token)
     ));
   }
