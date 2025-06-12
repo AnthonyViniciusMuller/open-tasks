@@ -1,4 +1,4 @@
-<mat-card class="main">
+<mat-card>
     <mat-card-header>
         <mat-card-title>Tasks</mat-card-title>
         <button matFab extended (click)="openCreateDialog()">
@@ -10,42 +10,13 @@
     <mat-card-content>
         @defer (when tasks.hasValue()) {
             @for (task of tasks.value(); track $index) {
-                <mat-card class="task" appearance="outlined">
-                    <mat-card-header>
-                        <mat-card-title>{{ task.label }}</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p>{{ task.description }}</p>
-                        <p>Created at: {{ task.createdAt | date:'short' }}</p>
-                        @if (task.expiresAt) {
-                            <p matListItemLine>Expires at: {{ task.expiresAt | date:'short' }}</p>
-                        }
-                    </mat-card-content>
-                    <mat-card-actions [align]="'end'">
-                        <button matButton (click)="openUpdateDialog(task)">edit</button>
-                        <button matButton>finish</button>
-                    </mat-card-actions>
-                </mat-card>
+                <app-task-card [task]="task" (update)="openUpdateDialog($event)" />
             } @empty {
                 <p>No tasks found, try creating one</p>
             }
         } @placeholder {
             @for (_ of [].constructor(10); track $index) {
-                <mat-card class="task" appearance="outlined">
-                    <mat-card-header>
-                        <mat-card-title><mat-progress-bar mode="indeterminate" /></mat-card-title>
-                        <mat-card-subtitle><mat-progress-bar mode="indeterminate" /></mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p><mat-progress-bar mode="indeterminate" /></p>
-                        <p><mat-progress-bar mode="indeterminate" /></p>
-                        <p><mat-progress-bar mode="indeterminate" /></p>
-                    </mat-card-content>
-                    <mat-card-actions [align]="'end'">
-                        <button matButton>edit</button>
-                        <button matButton>finish</button>
-                    </mat-card-actions>
-                </mat-card>
+                <app-task-card />
             }
         }
     </mat-card-content>

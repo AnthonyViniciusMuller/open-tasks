@@ -1,34 +1,24 @@
 import { Component, inject } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { Tasks as TasksService} from '../tasks';
-import { DatePipe } from '@angular/common';
-import { MatListModule } from '@angular/material/list';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { delay } from 'rxjs';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskCreate } from '../task-create/task-create';
 import { TaskUpdate } from '../task-update/task-update';
 import { Task } from '../tasks.interface';
+import { TaskCard } from "../task-card/task-card";
 
 @Component({
   selector: 'app-tasks',
   imports: [
     MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule,
-    DatePipe,
-    MatListModule,
-    MatProgressBarModule,
     MatIcon,
-  ],
+    TaskCard
+],
   templateUrl: './tasks.html',
   styleUrl: './tasks.scss'
 })

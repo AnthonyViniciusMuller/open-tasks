@@ -6,7 +6,7 @@
     overflow: hidden;
 }
 
-mat-card.main {
+mat-card {
     width: 80vw;
     max-width: 600px;
     padding: 2rem;
@@ -30,8 +30,4 @@ mat-card.main {
     display: flex;
     justify-content: flex-end;
     gap: 0.5rem;
-}
-
-mat-card.task {
-    margin: 1rem;
 }
