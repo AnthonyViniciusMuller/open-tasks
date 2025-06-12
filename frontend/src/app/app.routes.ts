@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authenticationGuard } from './guards/logged';
 
 export const routes: Routes = [
     {
@@ -11,6 +12,7 @@ export const routes: Routes = [
     },
     {
         path: 'tasks',
+        canActivate: [authenticationGuard()],
         loadComponent: () => import('./tasks/tasks/tasks').then(mod => mod.Tasks),
     },
     { 
