@@ -10,4 +10,10 @@
       }
     </mat-icon>
   </button>
+
+  @if (isLogged()) {
+    <button matIconButton (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  }
 </mat-toolbar>
