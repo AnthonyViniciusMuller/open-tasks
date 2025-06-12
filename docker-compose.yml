@@ -2,17 +2,26 @@ version: '3.8'
 
 services:
   frontend:
-    build:
-      context: ./frontend
+    build: ./frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
 
   backend:
-    build:
-      context: ./backend
+    build: ./backend
+    restart: always
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/mydb
     depends_on:
       - postgres
+    ports:
+      - "3000:3000"
+    command: sh -c "npx prisma migrate deploy"
 
   postgres:
-    image: postgres:18
+    image: postgres:17
     restart: always
     environment:
       POSTGRES_USER: postgres
