@@ -3,11 +3,19 @@ import { AUTH_SECRET } from '../../../constants/auth';
 import { AuthService } from '../../../application/service/auth';
 
 export class JwtService implements AuthService {
-    generate(payload: Record<string, unknown>, expiresIn = 1): string {
-        return jwt.sign(payload, AUTH_SECRET, { expiresIn: `${expiresIn}h` });
+    generate(payload: Record<string, unknown>): string {
+        return jwt.sign(payload, AUTH_SECRET, { expiresIn: '10s' });
     }
 
-    verify(token: string): any {
-        return jwt.verify(token, AUTH_SECRET);
+    generateRefresh(payload: Record<string, unknown>): string {
+        return jwt.sign(payload, AUTH_SECRET, { expiresIn: '7d' });
+    }
+
+    verify(token: string) {
+        try {
+            return { claims: jwt.verify(token, AUTH_SECRET) as Record<string, unknown>, error: null }
+        } catch (error) {
+            return { claims: {}, error: error as Error }
+        }
     }
 }

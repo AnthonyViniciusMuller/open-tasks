@@ -25,12 +25,12 @@ export class Login implements Usecase<LoginInDto, LoginOutDto> {
         const token = this.authService.generate({
             sub: user.id,
             email: user.email,
-        }, 1);
+        });
 
-        const refreshToken = this.authService.generate({
+        const refreshToken = this.authService.generateRefresh({
             sub: user.id,
             email: user.email,
-        }, 7 * 24);
+        });
 
         return { token, refreshToken };
     }

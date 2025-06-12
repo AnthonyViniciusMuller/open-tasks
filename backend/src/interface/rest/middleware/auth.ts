@@ -18,8 +18,8 @@ export class AuthMiddleware {
         return
       }
 
-      const claims = this.authService.verify(token)
-      if (!claims) {
+      const { claims, error } = this.authService.verify(token)
+      if (error) {
         res.status(403).json({ message: 'Invalid or expired token' });
         return
       }
