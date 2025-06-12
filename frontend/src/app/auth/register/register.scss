@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
 }
 
 mat-card {
@@ -23,4 +23,5 @@ mat-card {
 .button-container {
     display: flex;
     justify-content: flex-end;
+    gap: 0.5rem;
 }

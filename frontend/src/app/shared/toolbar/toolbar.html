@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <span>Open Tasks</span>
+
+  <button matIconButton class="toogle-theme" (click)="theme.toggleDarkMode()">
+    <mat-icon>
+      @if (theme.isDarkMode()) {
+        light_mode
+      } @else { 
+        dark_mode
+      }
+    </mat-icon>
+  </button>
+</mat-toolbar>
