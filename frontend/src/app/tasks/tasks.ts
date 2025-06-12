@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Task } from './tasks.interface';
 import { map, tap } from 'rxjs';
+import { TaskForm as TaskFormType } from './tasks.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,10 @@ export class Tasks {
   private http = inject(HttpClient);
 
   private baseUrl = `${environment.apiURL}/tasks`;
+
+  create(task: TaskFormType) {
+    return this.http.post(this.baseUrl, task);
+  }
 
   list() {
     return this.http.get<Task[]>(`${this.baseUrl}`).pipe(
