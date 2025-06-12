@@ -47,6 +47,10 @@ export class TaskForm {
       return
     }
 
-    this.form.setValue(task);
+    this.form.setValue({
+      label: task.label,
+      description: task.description,
+      expiresAt: task.expiresAt,
+    });
   });
 }

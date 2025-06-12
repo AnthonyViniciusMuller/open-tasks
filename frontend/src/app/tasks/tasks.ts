@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Task } from './tasks.interface';
-import { map, tap } from 'rxjs';
+import { map } from 'rxjs';
 import { TaskForm as TaskFormType } from './tasks.interface';
 
 @Injectable({
@@ -24,9 +24,13 @@ export class Tasks {
         userId: task["userId"],
         label: task["label"],
         description: task["description"],
-        createdAt: task["createdAt"] ? new Date(task["createdAt"]) : null,
+        createdAt: task["createdAt"] ? new Date(task["createdAt"]) : undefined,
         expiresAt: task["expiresAt"] ? new Date(task["expiresAt"]) : null,
       })))
     );
+  }
+
+  update(taskId: string, task: TaskFormType) {
+    return this.http.put(`${this.baseUrl}/${taskId}`, task);
   }
 }

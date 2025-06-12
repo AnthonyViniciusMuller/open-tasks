@@ -13,6 +13,8 @@ import { delay } from 'rxjs';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskCreate } from '../task-create/task-create';
+import { TaskUpdate } from '../task-update/task-update';
+import { Task } from '../tasks.interface';
 
 @Component({
   selector: 'app-tasks',
@@ -40,6 +42,14 @@ export class Tasks {
 
   openCreateDialog() {
     const dialogRef = this.dialog.open(TaskCreate);
+
+    dialogRef.afterClosed().subscribe(() => this.tasks.reload());
+  }
+
+  openUpdateDialog(task: Task) {
+    const dialogRef = this.dialog.open(TaskUpdate, {
+      data: task,
+    });
 
     dialogRef.afterClosed().subscribe(() => this.tasks.reload());
   }
