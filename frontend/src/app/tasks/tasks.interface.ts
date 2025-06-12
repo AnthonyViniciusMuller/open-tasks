@@ -1,4 +1,4 @@
-export interface Task {
+export type Task = {
     id?: string
     userId: string;
     label: string;
@@ -6,3 +6,5 @@ export interface Task {
     createdAt?: Date
     expiresAt: Date | null;
 }
+
+export type TaskForm = Omit<Task, 'id' | 'userId' | 'createdAt'>;
