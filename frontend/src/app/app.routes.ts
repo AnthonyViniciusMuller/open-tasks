@@ -9,6 +9,10 @@ export const routes: Routes = [
         path: 'register',
         loadComponent: () => import('./auth/register/register').then(mod => mod.Register),
     },
+    {
+        path: 'tasks',
+        loadComponent: () => import('./tasks/tasks/tasks').then(mod => mod.Tasks),
+    },
     { 
         path: '**', 
         redirectTo: 'login',
