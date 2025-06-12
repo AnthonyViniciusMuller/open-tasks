@@ -2,6 +2,9 @@
    <mat-card appearance="outlined">
         <mat-card-header>
             <mat-card-title>{{ task()!.label }}</mat-card-title>
+            <button matIconButton (click)="onDelete.emit(task()!.id!)">
+                <mat-icon>delete</mat-icon>
+            </button>
         </mat-card-header>
         <mat-card-content>
             <p>{{ task()!.description }}</p>
@@ -11,7 +14,7 @@
             }
         </mat-card-content>
         <mat-card-actions [align]="'end'">
-            <button matButton (click)="update.emit(task()!)">edit</button>
+            <button matButton (click)="onUpdate.emit(task()!)">edit</button>
             <button matButton>finish</button>
         </mat-card-actions>
     </mat-card>

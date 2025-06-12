@@ -1,3 +1,9 @@
 mat-card {
     margin: 1rem;
 }
+
+mat-card-header {
+    padding: 16px;
+    justify-content: space-between;
+    align-items: center;
+}

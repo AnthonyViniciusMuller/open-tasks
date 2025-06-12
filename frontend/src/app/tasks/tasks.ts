@@ -33,4 +33,8 @@ export class Tasks {
   update(taskId: string, task: TaskFormType) {
     return this.http.put(`${this.baseUrl}/${taskId}`, task);
   }
+
+  delete(taskId: string) {
+    return this.http.delete(`${this.baseUrl}/${taskId}`);
+  }
 }
