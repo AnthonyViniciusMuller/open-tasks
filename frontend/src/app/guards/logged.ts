@@ -7,7 +7,6 @@ export const authenticationGuard = (): CanActivateFn => {
     const auth = inject(Auth);
     const router = inject(Router);
 
-    console.log(auth.token())
     if (!auth.token()) {
         router.navigate(["login"]);
         

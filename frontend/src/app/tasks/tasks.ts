@@ -14,7 +14,6 @@ export class Tasks {
 
   list() {
     return this.http.get<Task[]>(`${this.baseUrl}`).pipe(
-      tap(value => console.log(value)),
       map((response) => response.map((task: { [x: string]: any; }) => ({
         id: task["id"],
         userId: task["userId"],
