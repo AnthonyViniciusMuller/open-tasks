@@ -21,6 +21,7 @@ export class Auth {
 
     const options = {
       context: new HttpContext().set(BYPASS_AUTH, true),
+      withCredentials: true,
     }
 
     return this.http.post<{ token: string}>(`${this.baseUrl}/login`, body, options).pipe(
@@ -39,5 +40,16 @@ export class Auth {
     }
     
     return this.http.post(`${this.baseUrl}/register`, body, options);
+  }
+
+  refresh() {
+    const options = {
+      context: new HttpContext().set(BYPASS_AUTH, true),
+      withCredentials: true,
+    }
+
+    return this.http.get<{ token: string}>(`${this.baseUrl}/refresh`, options).pipe(
+      map((response) => this.token.set(response.token)
+    ));
   }
 }

@@ -8,6 +8,7 @@ import { MAT_DATE_FNS_FORMATS, provideDateFnsAdapter } from '@angular/material-d
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ptBR } from 'date-fns/locale';
+import { RefreshInterceptor } from './interceptors/refresh';
 
 const datePicker = [
   provideDateFnsAdapter(),
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([AuthInterceptor])),
+    provideHttpClient(withInterceptors([RefreshInterceptor, AuthInterceptor])),
     provideAnimationsAsync(),
     ...datePicker,
   ]
