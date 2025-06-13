@@ -9,6 +9,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ptBR } from 'date-fns/locale';
 import { RefreshInterceptor } from './interceptors/refresh';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 const datePicker = [
   provideDateFnsAdapter(),
@@ -24,5 +25,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([RefreshInterceptor, AuthInterceptor])),
     provideAnimationsAsync(),
     ...datePicker,
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 }}
   ]
 };
