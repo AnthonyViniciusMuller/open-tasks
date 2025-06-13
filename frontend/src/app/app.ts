@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { Toolbar } from "./shared/toolbar/toolbar";
+import { Auth } from './auth/auth';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,12 @@ import { Toolbar } from "./shared/toolbar/toolbar";
   styleUrl: './app.scss'
 })
 export class App {
+  private auth = inject(Auth);
+  private router = inject(Router);
+
   protected title = 'open-tasks';
+
+  constructor() {
+    this.auth.refresh().subscribe(() => this.router.navigate(['/tasks']));
+  }
 }
