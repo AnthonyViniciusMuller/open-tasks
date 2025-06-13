@@ -20,6 +20,10 @@ export class TaskUpdate {
   readonly isLoading = signal(false);
 
   submit(task: TaskFormType) {
+    if (this.isLoading()) {
+      return
+    }
+
     const update$ = this.taskService.update(this.task.id!, task).pipe(
       catchError(error => this.handleError(error)),
       finalize(() => this.isLoading.set(false)),

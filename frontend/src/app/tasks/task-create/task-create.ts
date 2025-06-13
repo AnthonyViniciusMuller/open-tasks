@@ -19,6 +19,10 @@ export class TaskCreate {
   readonly isLoading = signal(false);
 
   submit(task: TaskFormType) {
+    if (this.isLoading()) {
+      return
+    }
+
     const create$ = this.taskService.create(task).pipe(
       catchError(error => this.handleError(error)),
       finalize(() => this.isLoading.set(false)),
