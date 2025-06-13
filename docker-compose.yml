@@ -5,7 +5,7 @@ services:
     build: ./frontend
     restart: always
     ports:
-      - "80:80"
+      - "4200:80"
     depends_on:
       - backend
 
@@ -18,7 +18,7 @@ services:
       - postgres
     ports:
       - "3000:3000"
-    command: sh -c "npx prisma migrate deploy"
+    command: sh -c "npx prisma migrate deploy && node dist/main.js"
 
   postgres:
     image: postgres:17
