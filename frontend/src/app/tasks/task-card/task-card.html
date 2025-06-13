@@ -1,5 +1,5 @@
 @defer (when task()) {
-   <mat-card appearance="outlined">
+   <mat-card appearance="outlined" [class.finished]="this.task()?.isFinished">
         <mat-card-header>
             <mat-card-title>{{ task()!.label }}</mat-card-title>
             <button matIconButton (click)="onDelete.emit(task()!.id!)">
@@ -15,7 +15,7 @@
         </mat-card-content>
         <mat-card-actions [align]="'end'">
             <button matButton (click)="onUpdate.emit(task()!)">edit</button>
-            <button matButton>finish</button>
+            <button matButton (click)="onFinish.emit(task()!)">finish</button>
         </mat-card-actions>
     </mat-card>
 }   

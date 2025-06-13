@@ -10,7 +10,11 @@
     <mat-card-content>
         @defer (when tasks.hasValue()) {
             @for (task of tasks.value(); track $index) {
-                <app-task-card [task]="task" (onUpdate)="openUpdateDialog($event)" (onDelete)="openDeleteDialog(task.id)" />
+                <app-task-card [task]="task" 
+                    (onUpdate)="openUpdateDialog($event)" 
+                    (onDelete)="openDeleteDialog(task.id)"
+                    (onFinish)="finish($event)"
+                />
             } @empty {
                 <p>No tasks found, try creating one</p>
             }

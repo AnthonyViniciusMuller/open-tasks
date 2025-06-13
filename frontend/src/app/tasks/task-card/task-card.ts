@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { Task } from '../tasks.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -16,10 +16,11 @@ import { MatIcon } from '@angular/material/icon';
     MatIcon,
   ],
   templateUrl: './task-card.html',
-  styleUrl: './task-card.scss'
+  styleUrl: './task-card.scss',
 })
 export class TaskCard {
   readonly task = input<Task>();
   readonly onUpdate = output<Task>();
   readonly onDelete = output<string>();
+  readonly onFinish = output<Task>();
 }

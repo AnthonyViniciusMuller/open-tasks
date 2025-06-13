@@ -24,6 +24,7 @@ export class Tasks {
         userId: task["userId"],
         label: task["label"],
         description: task["description"],
+        isFinished: !!task["isFinished"],
         createdAt: task["createdAt"] ? new Date(task["createdAt"]) : undefined,
         expiresAt: task["expiresAt"] ? new Date(task["expiresAt"]) : null,
       })))

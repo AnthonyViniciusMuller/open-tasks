@@ -1,5 +1,12 @@
 mat-card {
+    position: relative;
     margin: 1rem;
+
+    &.finished {
+        background: var(--mat-sys-surface-variant);
+        pointer-events: none;
+        text-decoration: line-through;
+    }
 }
 
 mat-card-header {

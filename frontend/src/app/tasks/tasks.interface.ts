@@ -3,8 +3,9 @@ export type Task = {
     userId: string;
     label: string;
     description: string;
+    isFinished: boolean;
     createdAt?: Date
     expiresAt: Date | null;
 }
 
-export type TaskForm = Omit<Task, 'id' | 'userId' | 'createdAt'>;
+export type TaskForm = Omit<Task, 'id' | 'userId' | 'createdAt' | 'isFinished'>;
