@@ -4,7 +4,7 @@ import { AuthService } from '../../../application/service/auth';
 
 export class JwtService implements AuthService {
     generate(payload: Record<string, unknown>): string {
-        return jwt.sign(payload, AUTH_SECRET, { expiresIn: '10s' });
+        return jwt.sign(payload, AUTH_SECRET, { expiresIn: '15m' });
     }
 
     generateRefresh(payload: Record<string, unknown>): string {
