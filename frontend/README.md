@@ -3,6 +3,7 @@
 ### Index
 
 - [Summary](#-summary)
+- [Disclaimer](#-disclaimer)
 - [Features](#-features)
 - [How to Run](#-how-to-run)
 - [Dependencies](#-dependencies)
@@ -11,6 +12,12 @@
 ## 🗂️ Summary
 
 This is the **Angular frontend** for **Open Tasks**, a simple Task Management application. It connects to the backend API to authenticate users and manage their tasks in a clean and intuitive interface.
+
+## ⚠️ Disclaimer
+
+> ⚠️ **Angular 20 introduces new conventions** for how components, services, and other entities are named and organized. For example, TaskComponent becames Task and TaskService also became Task.
+
+> 📝 **TODO**: Reevaluate the folder structure to better align with current Angular best practices — particularly semantics
 
 ## ✨ Features
 
