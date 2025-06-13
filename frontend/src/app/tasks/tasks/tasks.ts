@@ -1,9 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Tasks as TasksService} from '../tasks';
-import { catchError, delay, filter, finalize, throwError } from 'rxjs';
+import { catchError, filter, throwError } from 'rxjs';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskCreate } from '../task-create/task-create';
@@ -30,7 +30,7 @@ export class Tasks {
   private snackBar = inject(MatSnackBar);
 
   readonly tasks = rxResource({
-    stream: () => this.tasksService.list().pipe(delay(1000)),
+    stream: () => this.tasksService.list(),
   });
 
   openCreateDialog() {
